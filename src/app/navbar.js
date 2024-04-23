@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation';
 
 const NavLinks = [
 	{ id: 1, name: 'Home', path: '/' },
-	{ id: 2, name: 'Blog', path: '/blog' },
 ];
 
 const Navbar = () => {
@@ -15,8 +14,9 @@ const Navbar = () => {
 		<nav>
 			<div className="navbar">
 				<Link href="/">
-					<span className="logo">NextWp</span>
+					<span className="logo">PlanYourTravel</span>				
 				</Link>
+				<img src='icon.png'/>
 				<ul>
 					{NavLinks.map((link) => {
 						return (

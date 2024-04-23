@@ -3,14 +3,16 @@ import Link from 'next/link';
 const page = () => {
 	return (
 		<div className="hero">
-			<h2>Next.js + Headless WordPress</h2>
+			<h2>Travel Planning</h2>
 			<p>
-				This combination empowers seamless integration between Next.js and
-				WordPress, providing dynamic and efficient web experiences.
+				Enter the country you want to visit and we will suggest the best route
 			</p>
-			<Link href="/blog" className="btn">
-				Read Blog Posts
-			</Link>
+			<div className="submit">
+				<input placeholder="Enter your country..." className="input"/>
+				<Link href="/blog" className="btn">
+					Find out your next trip
+				</Link>
+			</div>
 		</div>
 	);
 };
