@@ -8,7 +8,6 @@ const NavLinks = [
 
 const Navbar = () => {
 	const pathname = usePathname();
-	const isActive = (path) => path === pathname;
 
 	return (
 		<nav>
@@ -23,7 +22,7 @@ const Navbar = () => {
 							<li key={link.id}>
 								<Link
 									href={link.path}
-									className={isActive(link.path) ? 'active' : ''}
+									className="active"
 								>
 									{link.name}
 								</Link>

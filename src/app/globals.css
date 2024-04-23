@@ -52,12 +52,6 @@ nav ul li {
   padding: 20px;
 }
 
-nav ul li .active:hover {
-  background-color: #fff;
-  color: #000;
-  transition: background-color 0.3s ease;
-}
-
 .container {
   max-width: 1200px;
   margin: 50px auto 0;
@@ -70,6 +64,12 @@ li .active {
   border-radius: 5px;
   padding: 10px;
   border: 2px solid #000;
+}
+
+nav ul li .active:hover {
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s ease;
 }
 
 .hero {
