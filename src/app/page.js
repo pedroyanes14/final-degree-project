@@ -17,7 +17,7 @@ const page = () => {
 				<Link href={{
 					pathname: '/blog',
 					query: {
-						country: country
+						country: country.toLowerCase()
 					}
 				}} className="btn">
 					Find out your next trip
