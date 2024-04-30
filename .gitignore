@@ -35,6 +35,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# google credentials
-final-degree-project-421721-87fa6c44e5f8.json
