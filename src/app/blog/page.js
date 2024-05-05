@@ -34,9 +34,14 @@ const BlogPage = () => {
   const country = useSearchParams().get("country");
 
   const getTest = async () => {
-    const response = await fetch(`/api?country=${country}`);
-    const data = await response.json();
-    setFetchedContent(data);
+    try {
+      const response = await fetch(`/api?country=${country}`);
+      const data = await response.json();
+      console.log(data);
+      setFetchedContent(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
