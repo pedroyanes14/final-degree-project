@@ -73,16 +73,10 @@ const BlogPage = () => {
             </Link>
           );
         })}
-      </div>
-      <div className="blog-page">
-        <h2>All AI Blog Posts</h2>
-        <p>All blog posts are fetched from Vertex AI via the REST API.</p>
-        <div className="posts">
-          <Link href={`/blog`} className="post">
-            <h3>Respuesta de Vertex AI</h3>
-            <p>{fetchedContent}</p>
-          </Link>
-        </div>
+        <Link href={`/blog/vertexAI?country=${country}&content=${fetchedContent}`} className="post">
+          <h3>Respuesta de Vertex AI</h3>
+          <p>{fetchedContent}</p>
+        </Link>
       </div>
     </div>
   );
