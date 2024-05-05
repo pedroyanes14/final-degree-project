@@ -17,6 +17,8 @@ export async function GET(request) {
   const url = request.nextUrl.searchParams;
   const country = url.get("country");
 
+  console.log("country", country);
+
   params.instances = [
     { content: `Make for me the best 2-day route in ${country}` },
   ];
@@ -34,12 +36,15 @@ export async function GET(request) {
       body: JSON.stringify(data),
     }
   );
-
-  const content = await response.json();
+  console.log("respone", response);
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
+
+  const content = await response.json();
+
+  console.log("content", content);
 
   return Response.json(content.predictions[0].content);
 }
