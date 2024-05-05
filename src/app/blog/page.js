@@ -34,8 +34,9 @@ const BlogPage = () => {
   const country = useSearchParams().get("country");
 
   const getTest = async () => {
+    const url = `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api` : "/api"}?country=${country}`;
     try {
-      const response = await fetch(`/api?country=${country}`);
+      const response = await fetch(url);
       const data = await response.json();
       console.log(data);
       setFetchedContent(data);
