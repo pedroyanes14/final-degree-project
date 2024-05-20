@@ -12,7 +12,8 @@ export default function RootLayout({ children }) {
 		<html lang="en">
 			<body>
 				<Navbar />
-				<div className="container">{children}<SpeedInsights /></div>
+				<div className="container">{children}</div>
+				<SpeedInsights />
 			</body>
 		</html>
 	);
