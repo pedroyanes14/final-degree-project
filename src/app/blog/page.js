@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
 
 async function getPosts() {
@@ -80,7 +79,6 @@ const BlogPage = () => {
           <p>{fetchedContent}</p>
         </Link>
       </div>
-      <SpeedInsights />
       <Analytics />
     </div>
   );

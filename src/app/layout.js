@@ -1,5 +1,6 @@
 import Navbar from './navbar';
 import './globals.css';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
 	title: 'Create Next App',
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
 			<body>
 				<Navbar />
 				<div className="container">{children}</div>
+				<SpeedInsights />
 			</body>
 		</html>
 	);
