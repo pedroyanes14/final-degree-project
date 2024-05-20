@@ -34,6 +34,7 @@ const page = async ({ params }) => {
 			<div className="blog-post">
 				<p dangerouslySetInnerHTML={{ __html: post.content.rendered }}></p>
 			</div>
+			<SpeedInsights />
 		</div>
 	);
 };

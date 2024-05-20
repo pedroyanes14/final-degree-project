@@ -79,6 +79,7 @@ const BlogPage = () => {
           <p>{fetchedContent}</p>
         </Link>
       </div>
+      <SpeedInsights />
     </div>
   );
 };

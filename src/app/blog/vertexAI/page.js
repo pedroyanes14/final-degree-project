@@ -18,6 +18,7 @@ const Page = () => {
 			<div className="blog-post">
 				<p>{content}</p>
 			</div>
+			<SpeedInsights />
 		</div>
 	);
 };
