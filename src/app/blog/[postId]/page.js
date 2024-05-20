@@ -1,4 +1,5 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 export const dynamicParams = true;
 
@@ -35,6 +36,7 @@ const page = async ({ params }) => {
 				<p dangerouslySetInnerHTML={{ __html: post.content.rendered }}></p>
 			</div>
 			<SpeedInsights />
+			<Analytics />
 		</div>
 	);
 };

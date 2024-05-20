@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 const page = () => {
 	const [country, setCountry] = useState('');
@@ -25,6 +26,7 @@ const page = () => {
 				</Link>
 			</div>
 			<SpeedInsights />
+			<Analytics />
 		</div>
 	);
 };

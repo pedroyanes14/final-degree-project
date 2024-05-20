@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 import { useSearchParams } from "next/navigation";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 const Page = () => {
     const country = useSearchParams().get("country");
@@ -19,6 +20,7 @@ const Page = () => {
 				<p>{content}</p>
 			</div>
 			<SpeedInsights />
+			<Analytics />
 		</div>
 	);
 };
