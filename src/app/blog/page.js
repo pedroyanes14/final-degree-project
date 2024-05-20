@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from 'react'
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 async function getPosts() {
@@ -75,12 +74,10 @@ const BlogPage = () => {
             </Link>
           );
         })}
-        <Suspense fallback={<div>Loading...</div>}>
-          <Link href={`/blog/vertexAI?country=${country}&content=${fetchedContent}`} className="post">
-            <h3>Respuesta de Vertex AI</h3>
-            <p>{fetchedContent}</p>
-          </Link>
-        </Suspense>
+        <Link href={`/blog/vertexAI?country=${country}&content=${fetchedContent}`} className="post">
+          <h3>Respuesta de Vertex AI</h3>
+          <p>{fetchedContent}</p>
+        </Link>
       </div>
     </div>
   );
