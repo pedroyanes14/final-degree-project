@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useSearchParams } from "next/navigation";
+import { Suspense } from 'react'
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const page = () => {
@@ -14,10 +15,12 @@ const page = () => {
 
 	return (
 		<div className="single-blog-page">
-			<h2>{country.toUpperCase()} ROAD TRIP</h2>
-			<div className="blog-post">
-				<p>{content}</p>
-			</div>
+			<Suspense fallback={<div>Loading...</div>} />
+				<h2>{country.toUpperCase()} ROAD TRIP</h2>
+				<div className="blog-post">
+					<p>{content}</p>
+				</div>
+			<Suspense />
 		</div>
 	);
 };
