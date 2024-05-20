@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const page = () => {
 	const [country, setCountry] = useState('');
@@ -23,6 +24,7 @@ const page = () => {
 					Find out your next trip
 				</Link>
 			</div>
+			<SpeedInsights />
 		</div>
 	);
 };

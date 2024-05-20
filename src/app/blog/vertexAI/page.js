@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useSearchParams } from "next/navigation";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const page = () => {
     const country = useSearchParams().get("country");

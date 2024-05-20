@@ -1,3 +1,5 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
