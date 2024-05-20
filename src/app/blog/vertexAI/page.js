@@ -2,7 +2,7 @@
 
 // import React, { useEffect } from 'react';
 import { useSearchParams } from "next/navigation";
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
 
 const Page = () => {
