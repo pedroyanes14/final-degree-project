@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Analytics } from '@vercel/analytics/react';
+import ContentLoader from 'react-content-loader'
 
 async function getPosts() {
   const response = await fetch(
@@ -33,6 +34,8 @@ const BlogPage = () => {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [fetchedContent, setFetchedContent] = useState();
   const country = useSearchParams().get("country");
+  const [loadingPosts, setLoading] = useState(true);
+  const [loadingAI, setLoadingAI] = useState(true);
 
   const getTest = async () => {
     const url = `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api` : "/api"}?country=${country}`;
@@ -41,6 +44,7 @@ const BlogPage = () => {
       const data = await response.json();
       console.log(data);
       setFetchedContent(data);
+      setLoadingAI(false)
     } catch (error) {
       console.error(error);
     }
@@ -53,11 +57,24 @@ const BlogPage = () => {
         postByCountry(posts, country).then((filtered) =>
           setFilteredPosts(filtered)
         );
+        setLoading(false);
       } else {
         setFilteredPosts(posts);
+        setLoading(false);
       }
     });
   }, [country]);
+
+  if (loadingPosts || loadingAI) {
+    return <ContentLoader viewBox="0 0 2000 720" height={720} width={2000}>
+      <rect x="0" y="13" rx="4" ry="4" width="1200" height="9" />
+      <rect x="0" y="29" rx="4" ry="4" width="400" height="8" />
+      <rect x="0" y="50" rx="4" ry="4" width="1200" height="10" />
+      <rect x="0" y="65" rx="4" ry="4" width="1200" height="10" />
+      <rect x="0" y="79" rx="4" ry="4" width="400" height="10" />
+      <rect x="0" y="99" rx="5" ry="5" width="1200" height="200" />
+    </ContentLoader>;
+  }
 
   return (
     <div className="blog-page">
