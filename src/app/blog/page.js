@@ -7,6 +7,25 @@ import { Analytics } from '@vercel/analytics/react';
 import ContentLoader from 'react-content-loader'
 import ReactMarkdown from 'react-markdown';
 
+const metrics = {
+  fetchCount: 0,
+  fetchDurations: []
+};
+
+async function fetchWithMetrics(url) {
+  const start = performance.now();
+  const response = await fetch(url);
+  const duration = performance.now() - start;
+  
+  metrics.fetchCount += 1;
+  metrics.fetchDurations.push(duration);
+
+  console.log(`Fetch count: ${metrics.fetchCount}`);
+  console.log(`Fetch duration: ${duration}ms`);
+  
+  return response;
+}
+
 async function getPosts() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?${new Date().getTime()}`
@@ -32,8 +51,8 @@ async function postByCountry(posts, country) {
 }
 
 async function getTest(country) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api` : "/api"}?country=${country}`
+  const response = await fetchWithMetrics(
+    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api` : "http://localhost:3000/api"}?country=${country}`
   );
   const data = await response.json();
   return data;
