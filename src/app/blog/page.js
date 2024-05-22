@@ -31,27 +31,26 @@ async function postByCountry(posts, country) {
   return filteredPosts.filter((post) => post !== null);
 }
 
+async function getTest(country) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api` : "/api"}?country=${country}`
+  );
+  const data = await response.json();
+  return data;
+};
+
 const BlogPage = () => {
+  const country = useSearchParams().get("country");
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [fetchedContent, setFetchedContent] = useState();
-  const country = useSearchParams().get("country");
   const [loadingPosts, setLoading] = useState(true);
   const [loadingAI, setLoadingAI] = useState(true);
 
-  const getTest = async () => {
-    const url = `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api` : "/api"}?country=${country}`;
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setFetchedContent(data);
-      setLoadingAI(false)
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
-    getTest();
+    getTest(country).then((data) => { 
+      setFetchedContent(data);
+      setLoadingAI(false);
+    });
     getPosts().then((posts) => {
       if (country) {
         postByCountry(posts, country).then((filtered) =>
