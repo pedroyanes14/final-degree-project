@@ -3,6 +3,7 @@
 // import React, { useEffect } from 'react';
 import { useSearchParams } from "next/navigation";
 import { Analytics } from '@vercel/analytics/react';
+import ReactMarkdown from 'react-markdown';
 
 const Page = () => {
     const country = useSearchParams().get("country");
@@ -16,7 +17,7 @@ const Page = () => {
 		<div className="single-blog-page">
 			<h2>{country.toUpperCase()} ROAD TRIP</h2>
 			<div className="blog-post">
-				<p>{content}</p>
+				<ReactMarkdown>{content}</ReactMarkdown>
 			</div>
 			<Analytics />
 		</div>

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Analytics } from '@vercel/analytics/react';
 import ContentLoader from 'react-content-loader'
+import ReactMarkdown from 'react-markdown';
 
 async function getPosts() {
   const response = await fetch(
@@ -42,7 +43,6 @@ const BlogPage = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
       setFetchedContent(data);
       setLoadingAI(false)
     } catch (error) {
@@ -93,7 +93,7 @@ const BlogPage = () => {
         })}
         <Link href={`/blog/vertexAI?country=${country}&content=${fetchedContent}`} className="post">
           <h3>Respuesta de Vertex AI</h3>
-          <p>{fetchedContent}</p>
+          <ReactMarkdown>{fetchedContent}</ReactMarkdown>
         </Link>
       </div>
       <Analytics />
