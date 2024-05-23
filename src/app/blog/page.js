@@ -12,6 +12,21 @@ const metrics = {
   fetchDurations: []
 };
 
+const metricsAI = {
+  fetchCount: 0,
+  fetchDurations: []
+};
+
+/* const sendMetrics = async (metrics) => {
+  await fetch('/api/metrics', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(metrics)
+  });
+}; */
+
 async function fetchWithMetrics(url) {
   const start = performance.now();
   const response = await fetch(url);
@@ -20,14 +35,28 @@ async function fetchWithMetrics(url) {
   metrics.fetchCount += 1;
   metrics.fetchDurations.push(duration);
 
-  console.log(`Fetch count: ${metrics.fetchCount}`);
-  console.log(`Fetch duration: ${duration}ms`);
+  console.log(`Peticion numero ${metrics.fetchCount}`);
+  console.log(`La respuesta de WordPress ha tardado: ${duration}ms`);
+  
+  return response;
+}
+
+async function fetchWithMetricsAI(url) {
+  const start = performance.now();
+  const response = await fetch(url);
+  const duration = performance.now() - start;
+  
+  metricsAI.fetchCount += 1;
+  metricsAI.fetchDurations.push(duration);
+
+  console.log(`Peticion numero ${metricsAI.fetchCount}`);
+  console.log(`La respuesta de Vertex AI ha tardado: ${duration}ms`);
   
   return response;
 }
 
 async function getPosts() {
-  const response = await fetch(
+  const response = await fetchWithMetrics(
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?${new Date().getTime()}`
   );
   const posts = await response.json();
@@ -38,9 +67,7 @@ async function postByCountry(posts, country) {
   const filteredPosts = await Promise.all(
     posts.map(async (post) => {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/tags/${
-          post.tags[0]
-        }?${new Date().getTime()}`
+        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/tags/${post.tags[0]}?${new Date().getTime()}`
       );
       const postByTagId = await response.json();
       return postByTagId.name == country ? post : null;
@@ -51,7 +78,7 @@ async function postByCountry(posts, country) {
 }
 
 async function getTest(country) {
-  const response = await fetchWithMetrics(
+  const response = await fetchWithMetricsAI(
     `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api` : "http://localhost:3000/api"}?country=${country}`
   );
   const data = await response.json();
