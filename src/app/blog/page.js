@@ -6,6 +6,9 @@ import { useSearchParams } from "next/navigation";
 import { Analytics } from '@vercel/analytics/react';
 import ContentLoader from 'react-content-loader'
 import ReactMarkdown from 'react-markdown';
+import ReactGA from "react-ga4";
+
+ReactGA.initialize('G-4KV9660FP3');
 
 const metrics = {
   fetchCount: 0,
@@ -17,16 +20,6 @@ const metricsAI = {
   fetchDurations: []
 };
 
-/* const sendMetrics = async (metrics) => {
-  await fetch('/api/metrics', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(metrics)
-  });
-}; */
-
 async function fetchWithMetrics(url) {
   const start = performance.now();
   const response = await fetch(url);
@@ -34,6 +27,9 @@ async function fetchWithMetrics(url) {
   
   metrics.fetchCount += 1;
   metrics.fetchDurations.push(duration);
+
+  ReactGA.event('Peticion realizada por al API de WordPress', { numero_de_peticion: metrics.fetchCount });
+  ReactGA.event('Duracion de la peticion WordPress', { duracion: duration });
 
   console.log(`Peticion numero ${metrics.fetchCount}`);
   console.log(`La respuesta de WordPress ha tardado: ${duration}ms`);
@@ -48,6 +44,9 @@ async function fetchWithMetricsAI(url) {
   
   metricsAI.fetchCount += 1;
   metricsAI.fetchDurations.push(duration);
+
+  ReactGA.event('Peticion realizada por al API de Vertex AI', { numero_de_peticion: metricsAI.fetchCount });
+  ReactGA.event('Duracion de la peticion Vertex AI', { duracion: duration });
 
   console.log(`Peticion numero ${metricsAI.fetchCount}`);
   console.log(`La respuesta de Vertex AI ha tardado: ${duration}ms`);

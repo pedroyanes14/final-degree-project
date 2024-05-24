@@ -2,6 +2,10 @@
 
 module.exports = {
   experimental: {
+    /* instrumentationHooks: true,
+    serverComponentsExternalPackages: [
+      '@opentelemetry/instrumentation',
+    ],*/
     missingSuspenseWithCSRBailout: false,
   },
   /* async rewrites() {
