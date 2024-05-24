@@ -7,6 +7,7 @@ import { Analytics } from '@vercel/analytics/react';
 import ContentLoader from 'react-content-loader'
 import ReactMarkdown from 'react-markdown';
 import ReactGA from "react-ga4";
+import { track } from '@vercel/analytics';
 
 ReactGA.initialize('G-4KV9660FP3');
 
@@ -27,6 +28,14 @@ async function fetchWithMetrics(url) {
   
   metrics.fetchCount += 1;
   metrics.fetchDurations.push(duration);
+
+  track('fetch_count', {
+    fetchCount: metrics.fetchCount
+  });
+  
+  track('fetch_duration', {
+    duration: duration
+  });
 
   ReactGA.event('Peticion realizada por al API de WordPress', { numero_de_peticion: metrics.fetchCount });
   ReactGA.event('Duracion de la peticion WordPress', { duracion: duration });
