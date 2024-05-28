@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+/* import { NextResponse } from 'next/server';
 import { incrementExampleCounterAI, measureDurationAI } from '../../metrics';
 
 export function GET(req) {
@@ -8,4 +8,4 @@ export function GET(req) {
     const duration = Number(url.get('duration'));
     measureDurationAI(duration);
     return NextResponse.json({ message: 'Contador incrementado' });
-}
+} */

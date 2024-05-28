@@ -31,7 +31,7 @@ const durationAI = new client.Histogram({
 });
 
 // Incrementa el contador cada vez que se llama
-function incrementExampleCounter() {
+/* function incrementExampleCounter() {
   counter.inc();
 }
 
@@ -45,13 +45,18 @@ function incrementExampleCounterAI() {
 
 function measureDurationAI(value) {
   durationAI.observe(value);
-}
+} */
 
 // Exporta las métricas y el contador
 module.exports = {
-  register,
+  /* register,
   incrementExampleCounter,
   measureDuration,
   incrementExampleCounterAI,
-  measureDurationAI
+  measureDurationAI */
+  register,
+  counter,
+  duration,
+  counterAI,
+  durationAI,
 };

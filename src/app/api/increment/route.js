@@ -1,11 +1,20 @@
 import { NextResponse } from 'next/server';
-import { incrementExampleCounter, measureDuration } from '../../metrics';
+import { counter, duration, counterAI, durationAI } from '../../metrics';
 
-export function GET(req) {
-    console.log('API /api/increment called');
-    incrementExampleCounter();
-    const url = req.nextUrl.searchParams;
-    const duration = Number(url.get('duration'));
-    measureDuration(duration);
-    return NextResponse.json({ message: 'Contador incrementado' });
+export async function GET(req) {
+    const { searchParams } = new URL(req.url);
+    const duracion = searchParams.get('duration');
+    const action = searchParams.get('action');
+
+    if (action === 'fetch') {
+        counter.inc();
+        duration.observe(duracion);
+        return NextResponse.json({ message: 'Contador incrementado' });
+    } else if (action === 'fetchAI') {
+        counterAI.inc();
+        durationAI.observe(duracion);
+        return NextResponse.json({ message: 'ContadorAI incrementado' });
+    } else {
+        return NextResponse.json({ message: 'No se ha realizado ninguna accion' });
+    }
 }

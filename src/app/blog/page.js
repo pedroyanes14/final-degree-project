@@ -32,7 +32,7 @@ async function fetchWithMetrics(url) {
   // ReactGA.event('Duracion de la peticion WordPress', { duracion: duration });
 
   await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/increment"}?duration=${duration}`
+    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/increment"}?duration=${duration}&action=fetch`
   );
 
   console.log(`Peticion numero ${metrics.fetchCount}`);
@@ -53,7 +53,7 @@ async function fetchWithMetricsAI(url) {
   // ReactGA.event('Duracion de la peticion Vertex AI', { duracion: duration });
 
   await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/incrementAI` : "http://localhost:3000/api/incrementAI"}?duration=${duration}`
+    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/incrementAI"}?duration=${duration}&action=fetchAI`
   );
 
   console.log(`Peticion numero ${metricsAI.fetchCount}`);
