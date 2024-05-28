@@ -64,8 +64,7 @@ async function fetchWithMetricsAI(url) {
 
 async function getPosts() {
   const response = await fetchWithMetrics(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?${new Date().getTime()}`,
-    { mode: 'no-cors' }
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?${new Date().getTime()}`
   );
   const posts = await response.json();
   return posts;
@@ -75,8 +74,7 @@ async function postByCountry(posts, country) {
   const filteredPosts = await Promise.all(
     posts.map(async (post) => {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/tags/${post.tags[0]}?${new Date().getTime()}`,
-        { mode: 'no-cors' }
+        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/tags/${post.tags[0]}?${new Date().getTime()}`
       );
       const postByTagId = await response.json();
       return postByTagId.name == country ? post : null;
