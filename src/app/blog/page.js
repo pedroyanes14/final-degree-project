@@ -6,10 +6,9 @@ import { useSearchParams } from "next/navigation";
 import { Analytics } from '@vercel/analytics/react';
 import ContentLoader from 'react-content-loader'
 import ReactMarkdown from 'react-markdown';
-import ReactGA from "react-ga4";
-import { track } from '@vercel/analytics';
+// import ReactGA from "react-ga4";
 
-ReactGA.initialize('G-4KV9660FP3');
+// ReactGA.initialize('G-4KV9660FP3');
 
 const metrics = {
   fetchCount: 0,
@@ -29,16 +28,10 @@ async function fetchWithMetrics(url) {
   metrics.fetchCount += 1;
   metrics.fetchDurations.push(duration);
 
-  track('fetch_count', {
-    fetchCount: metrics.fetchCount
-  });
-  
-  track('fetch_duration', {
-    duration: duration
-  });
+  // ReactGA.event('Peticion realizada por al API de WordPress', { numero_de_peticion: metrics.fetchCount });
+  // ReactGA.event('Duracion de la peticion WordPress', { duracion: duration });
 
-  ReactGA.event('Peticion realizada por al API de WordPress', { numero_de_peticion: metrics.fetchCount });
-  ReactGA.event('Duracion de la peticion WordPress', { duracion: duration });
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/increment"}?duration=${duration}`);
 
   console.log(`Peticion numero ${metrics.fetchCount}`);
   console.log(`La respuesta de WordPress ha tardado: ${duration}ms`);
@@ -54,8 +47,10 @@ async function fetchWithMetricsAI(url) {
   metricsAI.fetchCount += 1;
   metricsAI.fetchDurations.push(duration);
 
-  ReactGA.event('Peticion realizada por al API de Vertex AI', { numero_de_peticion: metricsAI.fetchCount });
-  ReactGA.event('Duracion de la peticion Vertex AI', { duracion: duration });
+  // ReactGA.event('Peticion realizada por al API de Vertex AI', { numero_de_peticion: metricsAI.fetchCount });
+  // ReactGA.event('Duracion de la peticion Vertex AI', { duracion: duration });
+
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/incrementAI` : "http://localhost:3000/api/incrementAI"}?duration=${duration}`);
 
   console.log(`Peticion numero ${metricsAI.fetchCount}`);
   console.log(`La respuesta de Vertex AI ha tardado: ${duration}ms`);
