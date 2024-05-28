@@ -17,6 +17,6 @@ export async function GET(req) {
         durationAI.observe(duracion);
         return NextResponse.json({ message: 'ContadorAI incrementado' });
     } else {
-        return NextResponse.json({ message: 'No se ha realizado ninguna accion' });
+        return NextResponse.json({ message: 'No se ha realizado nada' });
     }
 }
