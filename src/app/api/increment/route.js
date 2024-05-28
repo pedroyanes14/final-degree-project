@@ -3,7 +3,7 @@ import { counter, duration, counterAI, durationAI } from '../../metrics';
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url);
-    const duracion = searchParams.get('duration');
+    const duracion = parseFloat(searchParams.get('duration'));
     const action = searchParams.get('action');
     console.log(duracion)
     console.log(action)
