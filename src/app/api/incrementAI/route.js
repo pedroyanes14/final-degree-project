@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { incrementExampleCounterAI, measureDurationAI } from '../../metrics';
 
-export function GET(req) {
+export async function GET(req) {
     console.log('API /api/incrementAI called');
     incrementExampleCounterAI();
     const url = req.nextUrl.searchParams;

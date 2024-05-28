@@ -31,7 +31,9 @@ async function fetchWithMetrics(url) {
   // ReactGA.event('Peticion realizada por al API de WordPress', { numero_de_peticion: metrics.fetchCount });
   // ReactGA.event('Duracion de la peticion WordPress', { duracion: duration });
 
-  await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/increment"}?duration=${duration}`);
+  await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/increment"}?duration=${duration}`
+  );
 
   console.log(`Peticion numero ${metrics.fetchCount}`);
   console.log(`La respuesta de WordPress ha tardado: ${duration}ms`);
@@ -50,7 +52,9 @@ async function fetchWithMetricsAI(url) {
   // ReactGA.event('Peticion realizada por al API de Vertex AI', { numero_de_peticion: metricsAI.fetchCount });
   // ReactGA.event('Duracion de la peticion Vertex AI', { duracion: duration });
 
-  await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/incrementAI` : "http://localhost:3000/api/incrementAI"}?duration=${duration}`);
+  await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/incrementAI` : "http://localhost:3000/api/incrementAI"}?duration=${duration}`
+  );
 
   console.log(`Peticion numero ${metricsAI.fetchCount}`);
   console.log(`La respuesta de Vertex AI ha tardado: ${duration}ms`);
