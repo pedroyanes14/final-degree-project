@@ -1,0 +1,10 @@
+{
+    "routes": [
+      {
+        "src": "/api/metrics",
+        "dest": "/api/metrics",
+        "methods": ["GET"],
+        "strategy": "none"
+      }
+    ]
+}

@@ -6,8 +6,7 @@ export async function GET() {
     return new NextResponse(metrics, {
         status: 200,
         headers: { 
-            'Content-Type': register.contentType,
-            'Cache-Control': 'no-store' // Add this line
+            'Content-Type': register.contentType
         },
     });
 }
