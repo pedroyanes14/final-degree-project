@@ -53,7 +53,7 @@ async function fetchWithMetricsAI(url) {
   // ReactGA.event('Duracion de la peticion Vertex AI', { duracion: duration });
 
   await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/incrementAI"}?duration=${duration}&action=fetchAI`
+    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/increment"}?duration=${duration}&action=fetchAI`
   );
 
   console.log(`Peticion numero ${metricsAI.fetchCount}`);
