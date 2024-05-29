@@ -3,8 +3,11 @@ import { register } from '../../metrics';
 
 export async function GET() {
     const metrics = await register.metrics();
-    return NextResponse(metrics, {
+    return new NextResponse(metrics, {
         status: 200,
-        headers: { 'Content-Type': register.contentType },
+        headers: { 
+            'Content-Type': register.contentType,
+            'Cache-Control': 'no-store' // Add this line
+        },
     });
 }
