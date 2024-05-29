@@ -1,4 +1,4 @@
-import { Registry, Histogram, Counter } from 'prom-client';
+import { Registry, Gauge, Counter } from 'prom-client';
 
 // Crea un nuevo Registro
 const register = new Registry();
@@ -10,7 +10,7 @@ const counter = new Counter({
   registers: [register],
 });
 
-const duration = new Histogram({
+const duration = new Gauge({
   name: 'Duracion_Peticion_WordPress',
   help: 'Este es un histograma para medir la duracion de las peticiones a la API de WordPress',
   registers: [register],
@@ -23,7 +23,7 @@ const counterAI = new Counter({
   registers: [register],
 });
 
-const durationAI = new Histogram({
+const durationAI = new Gauge({
   name: 'Duracion_Peticion_Vertex_AI',
   help: 'Este es un histograma para medir la duracion de las peticiones a la API de Vertex AI',
   registers: [register],

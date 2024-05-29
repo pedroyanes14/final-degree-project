@@ -10,11 +10,11 @@ export async function GET(req) {
 
     if (action === 'fetch') {
         counter.inc();
-        duration.observe(duracion);
+        duration.set(duracion);
         return NextResponse.json({ message: 'Contador incrementado' });
     } else if (action === 'fetchAI') {
         counterAI.inc();
-        durationAI.observe(duracion);
+        durationAI.set(duracion);
         return NextResponse.json({ message: 'ContadorAI incrementado' });
     } else {
         return NextResponse.json({ message: 'No se ha realizado nada' });
