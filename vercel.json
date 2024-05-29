@@ -1,10 +1,10 @@
 {
-    "routes": [
+    "headers": [
       {
-        "src": "/api/metrics",
-        "dest": "/api/metrics",
-        "methods": ["GET"],
-        "strategy": "none"
+        "source": "/api/metrics",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-store" }
+        ]
       }
     ]
-}
+  }
