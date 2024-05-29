@@ -24,6 +24,12 @@ export async function GET(request) {
 
   const url = request.nextUrl.searchParams;
   const country = url.get("country");
+  const reset = url.get("reset");
+
+  if (reset === "26032001") {
+    cache = {};
+    return Response.json({ message: "Cache reset" });
+  }
 
   const cacheKey = `${country}-content`;
   if (cache[cacheKey]) {
@@ -58,5 +64,3 @@ export async function GET(request) {
 
   return Response.json(content.predictions[0].content);
 }
-
-module.export = { cache };
