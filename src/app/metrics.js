@@ -11,7 +11,7 @@ const counter = new Counter({
 });
 
 const duration = new Gauge({
-  name: 'Duracion_Peticion_WordPress',
+  name: 'Duracion_Peticion_API_WordPress',
   help: 'Este es un contador para medir la duracion de las peticiones a la API de WordPress',
   registers: [register],
 });
@@ -23,7 +23,7 @@ const counterAI = new Counter({
 });
 
 const durationAI = new Gauge({
-  name: 'Duracion_Peticion_Vertex_AI',
+  name: 'Duracion_Peticion__API_Vertex_AI',
   help: 'Este es un contador para medir la duracion de las peticiones a la API de Vertex AI',
   registers: [register],
 });

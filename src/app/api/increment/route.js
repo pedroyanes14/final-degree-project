@@ -5,8 +5,6 @@ export async function GET(req) {
     const { searchParams } = new URL(req.url);
     const duracion = parseFloat(searchParams.get('duration'));
     const action = searchParams.get('action');
-    console.log(duracion)
-    console.log(action)
 
     if (action === 'fetch') {
         counter.inc();
