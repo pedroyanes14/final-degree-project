@@ -10,44 +10,25 @@ import ReactMarkdown from 'react-markdown';
 
 // ReactGA.initialize('G-4KV9660FP3');
 
-const metrics = {
-  fetchCount: 0,
-  fetchDurations: []
-};
-
-const metricsAI = {
-  fetchCount: 0,
-  fetchDurations: []
-};
-
-async function fetchWithMetrics(url) {
+async function fetchWithMetrics(url, action) {
   const start = performance.now();
   const response = await fetch(url);
   const duration = performance.now() - start;
-  
-  metrics.fetchCount += 1;
-  metrics.fetchDurations.push(duration);
 
   // ReactGA.event('Peticion realizada por al API de WordPress', { numero_de_peticion: metrics.fetchCount });
   // ReactGA.event('Duracion de la peticion WordPress', { duracion: duration });
 
   await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/increment"}?duration=${duration}&action=fetch`
+    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/increment"}?duration=${duration}&action=${action}`
   );
-
-  console.log(`Peticion numero ${metrics.fetchCount}`);
-  console.log(`La respuesta de WordPress ha tardado: ${duration}ms`);
   
   return response;
 }
 
-async function fetchWithMetricsAI(url) {
+/* async function fetchWithMetricsAI(url) {
   const start = performance.now();
   const response = await fetch(url);
   const duration = performance.now() - start;
-  
-  metricsAI.fetchCount += 1;
-  metricsAI.fetchDurations.push(duration);
 
   // ReactGA.event('Peticion realizada por al API de Vertex AI', { numero_de_peticion: metricsAI.fetchCount });
   // ReactGA.event('Duracion de la peticion Vertex AI', { duracion: duration });
@@ -55,16 +36,13 @@ async function fetchWithMetricsAI(url) {
   await fetch(
     `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/increment"}?duration=${duration}&action=fetchAI`
   );
-
-  console.log(`Peticion numero ${metricsAI.fetchCount}`);
-  console.log(`La respuesta de Vertex AI ha tardado: ${duration}ms`);
   
   return response;
-}
+} */
 
 async function getPosts() {
   const response = await fetchWithMetrics(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?${new Date().getTime()}`
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?${new Date().getTime()}`, 'fetch'
   );
   const posts = await response.json();
   return posts;
@@ -85,8 +63,8 @@ async function postByCountry(posts, country) {
 }
 
 async function getTest(country) {
-  const response = await fetchWithMetricsAI(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api` : "http://localhost:3000/api"}?country=${country}`
+  const response = await fetchWithMetrics(
+    `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api` : "http://localhost:3000/api"}?country=${country}`, 'fetchAI'
   );
   const data = await response.json();
   return data;
