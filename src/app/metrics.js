@@ -12,9 +12,8 @@ const counter = new Counter({
 
 const duration = new Gauge({
   name: 'Duracion_Peticion_WordPress',
-  help: 'Este es un histograma para medir la duracion de las peticiones a la API de WordPress',
+  help: 'Este es un contador para medir la duracion de las peticiones a la API de WordPress',
   registers: [register],
-  buckets: [5, 50, 500, 2500],
 });
 
 const counterAI = new Counter({
@@ -25,9 +24,8 @@ const counterAI = new Counter({
 
 const durationAI = new Gauge({
   name: 'Duracion_Peticion_Vertex_AI',
-  help: 'Este es un histograma para medir la duracion de las peticiones a la API de Vertex AI',
+  help: 'Este es un contador para medir la duracion de las peticiones a la API de Vertex AI',
   registers: [register],
-  buckets: [5, 50, 500, 2500],
 });
 
 // Incrementa el contador cada vez que se llama
