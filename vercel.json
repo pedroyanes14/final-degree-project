@@ -1,10 +1,9 @@
 {
-    "headers": [
+    "rewrites": [
       {
         "source": "/api/metrics",
-        "headers": [
-          { "key": "Cache-Control", "value": "no-store" }
-        ]
+        "destination": "/api/metrics",
+        "headers": { "Cache-Control": "no-store" }
       }
     ]
 }
