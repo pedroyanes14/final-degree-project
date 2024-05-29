@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server';
 import { counter, duration, counterAI, durationAI } from '../../metrics';
 
 export async function GET(request) {
-    counter.resets();
-    duration.resets();
-    counterAI.resets();
-    durationAI.resets();
+    counter.reset();
+    duration.reset();
+    counterAI.reset();
+    durationAI.reset();
     return NextResponse.json({ message: 'Métricas reiniciadas' });
 }
