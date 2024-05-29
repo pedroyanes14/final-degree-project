@@ -58,3 +58,5 @@ export async function GET(request) {
 
   return Response.json(content.predictions[0].content);
 }
+
+export { cache };
