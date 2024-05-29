@@ -1,9 +1,0 @@
-{
-    "rewrites": [
-      {
-        "source": "/api/metrics",
-        "destination": "/api/metrics",
-        "headers": { "Cache-Control": "no-store" }
-      }
-    ]
-}
