@@ -6,9 +6,9 @@ export async function GET() {
     const response = new NextResponse(metrics, {
         status: 200,
         headers: { 
-            'Content-Type': register.contentType
+            'Content-Type': register.contentType,
+            'Cache-Control': 'no-store'
         },
     });
-    response.setHeader('Cache-Control', 'no-store');
     return response;
 }
