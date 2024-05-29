@@ -7,7 +7,7 @@ const params = {
   parameters: { temperature: 0.2, maxOutputTokens: 1024, topP: 0.8, topK: 40 },
 };
 
-const cache = {};
+let cache = {};
 
 export async function GET(request) {
   const auth = new GoogleAuth({
