@@ -7,8 +7,6 @@ const params = {
   parameters: { temperature: 0.2, maxOutputTokens: 1024, topP: 0.8, topK: 40 },
 };
 
-let cache = {};
-
 export async function GET(request) {
   const auth = new GoogleAuth({
     credentials: {
@@ -24,18 +22,6 @@ export async function GET(request) {
 
   const url = request.nextUrl.searchParams;
   const country = url.get("country");
-  const reset = url.get("reset");
-
-  if (reset === "26032001") {
-    cache = {};
-    return Response.json({ message: "Cache reset" });
-  }
-
-  const cacheKey = `${country}-content`;
-  if (cache[cacheKey]) {
-    console.log(`Cache hit for ${cacheKey}`);
-    return Response.json(cache[cacheKey].predictions[0].content);
-  }
 
   params.instances = [
     { content: `Make for me the best 2-day route in ${country}` },
@@ -60,7 +46,6 @@ export async function GET(request) {
   }
 
   const content = await response.json();
-  cache[cacheKey] = content;
 
   return Response.json(content.predictions[0].content);
 }

@@ -1,12 +1,12 @@
-'use client';
+"use client";
+
 import Link from 'next/link';
 
 const NavLinks = [
 	{ id: 1, name: 'Home', path: '/' },
 ];
 
-const Navbar = () => {
-
+export default function Navbar() {
 	return (
 		<nav>
 			<div className="navbar">
@@ -32,5 +32,3 @@ const Navbar = () => {
 		</nav>
 	);
 };
-
-export default Navbar;

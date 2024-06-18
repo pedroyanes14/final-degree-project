@@ -1,4 +1,4 @@
-import Navbar from './navbar';
+import Navbar from './navbar.jsx';
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
