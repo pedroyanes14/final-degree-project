@@ -4,7 +4,7 @@ export default async function Post({ searchParams }) {
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/search?search=${searchParams}`, {
         next: {
-            revalidate: 300
+            revalidate: 3600
         }
     });
     const postID = await response.json();
@@ -12,7 +12,7 @@ export default async function Post({ searchParams }) {
     const post = await fetch(
         `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts/${postID[0].id}`, {
         next: {
-            revalidate: 300
+            revalidate: 3600
         }
     });
     const postContent = await post.json();
