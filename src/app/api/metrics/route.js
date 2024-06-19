@@ -4,7 +4,6 @@ import { register } from '../../metrics';
 
 export async function GET(request) {
     const metrics = await register.metrics();
-    console.log(metrics);
     const response = new NextResponse(metrics, {
         status: 200,
         headers: { 
