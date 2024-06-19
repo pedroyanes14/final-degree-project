@@ -10,9 +10,8 @@ export default async function PostAI({ searchParams }) {
     const data = await response.json();
     const duracion = performance.now() - start;
 
-    console.log(duracion);
-
     counterAI.inc();
+    console.log(counterAI.inc());
     durationAI.set(duracion);
 
     return (
