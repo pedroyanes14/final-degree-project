@@ -66,8 +66,8 @@ async function getTest(country) {
   return data;
 }; */
 
-export default function BlogPage({ searchParams }) {
-  console.log(register.metrics());
+export default async function BlogPage({ searchParams }) {
+  console.log(await register.metrics());
 
   return (
     <div className="blog-page">
