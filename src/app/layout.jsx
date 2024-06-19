@@ -1,6 +1,7 @@
 import Navbar from './navbar.jsx';
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
 	title: 'Final Degree Project',
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
 			<body>
 				<Navbar />
 				<div className="container">{children}</div>
+				<Analytics />
 				<SpeedInsights />
 			</body>
 		</html>
