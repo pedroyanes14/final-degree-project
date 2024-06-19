@@ -2,7 +2,6 @@
 // import ReactGA from "react-ga4";
 import Post from "../../components/post";
 import PostAI from "../../components/postAI";
-import { register } from "../../app/metrics";
 
 // ReactGA.initialize('G-4KV9660FP3');
 
@@ -66,8 +65,7 @@ async function getTest(country) {
   return data;
 }; */
 
-export default async function BlogPage({ searchParams }) {
-  console.log(await register.metrics());
+export default function BlogPage({ searchParams }) {
 
   return (
     <div className="blog-page">
