@@ -19,7 +19,7 @@ export async function GET(req) {
         status: 200,
         headers: { 
             'Content-Type': register.contentType,
-            'Cache-Control': 'no-store',
+            // 'Cache-Control': 'no-store',
         },
     });
     return response;
