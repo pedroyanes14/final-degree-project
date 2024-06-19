@@ -5,7 +5,7 @@ import PostAI from "../../components/postAI";
 
 // ReactGA.initialize('G-4KV9660FP3');
 
-async function fetchWithMetrics(url, action) {
+/* async function fetchWithMetrics(url, action) {
   const start = performance.now();
   const response = await fetch(url);
   const duration = performance.now() - start;
@@ -18,7 +18,7 @@ async function fetchWithMetrics(url, action) {
   );
   
   return response;
-}
+} */
 
 /* async function fetchWithMetricsAI(url) {
   const start = performance.now();
@@ -35,7 +35,7 @@ async function fetchWithMetrics(url, action) {
   return response;
 } */
 
-async function getPosts() {
+/* async function getPosts() {
   const response = await fetchWithMetrics(
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?${new Date().getTime()}`, 'fetch'
   );
@@ -63,7 +63,7 @@ async function getTest(country) {
   );
   const data = await response.json();
   return data;
-};
+}; */
 
 export default function BlogPage({ searchParams }) {
   return (

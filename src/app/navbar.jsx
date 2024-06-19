@@ -13,7 +13,7 @@ export default function Navbar() {
 				<Link href="/">
 					<span className="logo">PlanYourTravel</span>				
 				</Link>
-				<img src='icon.png'/>
+				<img src='/icon.png'/>
 				<ul>
 					{NavLinks.map((link) => {
 						return (

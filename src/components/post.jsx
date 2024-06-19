@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { counter, duration } from '../app/metrics';
+import { revalidatePath } from 'next/cache';
 
 export default async function Post({ searchParams }) {
+    const start = performance.now();
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/search?search=${searchParams}`, {
         next: {
@@ -16,6 +19,12 @@ export default async function Post({ searchParams }) {
         }
     });
     const postContent = await post.json();
+    const duracion = performance.now() - start;
+
+    counter.inc();
+    duration.set(duracion);
+
+    revalidatePath("/api/metrics");
 
     return (
         <Link href={`/blog/${postID[0].id}`} className="post">
