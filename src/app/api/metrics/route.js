@@ -8,6 +8,10 @@ export async function GET(request) {
         status: 200,
         headers: { 
             'Content-Type': register.contentType,
+            'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+            'Surrogate-Control': 'no-store',
         },
     });
     return response;

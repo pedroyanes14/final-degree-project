@@ -28,30 +28,8 @@ const durationAI = new Gauge({
   registers: [register],
 });
 
-// Incrementa el contador cada vez que se llama
-/* function incrementExampleCounter() {
-  counter.inc();
-}
-
-function measureDuration(value) {
-  duration.observe(value);
-}
-
-function incrementExampleCounterAI() {
-  counterAI.inc();
-}
-
-function measureDurationAI(value) {
-  durationAI.observe(value);
-} */
-
 // Exporta las métricas y el contador
 module.exports = {
-  /* register,
-  incrementExampleCounter,
-  measureDuration,
-  incrementExampleCounterAI,
-  measureDurationAI */
   register,
   counter,
   duration,
