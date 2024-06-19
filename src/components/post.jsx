@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { register, counter, duration } from '../app/metrics';
+import { counter, duration } from '../app/metrics';
 
 export default async function Post({ searchParams }) {
     const start = performance.now();
@@ -22,8 +22,6 @@ export default async function Post({ searchParams }) {
 
     counter.inc();
     duration.set(duracion);
-
-    console.log(await register.metrics());
 
     return (
         <Link href={`/blog/${postID[0].id}`} className="post">
