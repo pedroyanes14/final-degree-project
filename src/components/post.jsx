@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { counter, duration } from '../app/metrics';
-import { revalidatePath } from 'next/cache';
+// import { revalidatePath } from 'next/cache';
 
 export default async function Post({ searchParams }) {
     const start = performance.now();
@@ -24,7 +24,7 @@ export default async function Post({ searchParams }) {
     counter.inc();
     duration.set(duracion);
 
-    revalidatePath("/api/metrics");
+    // revalidatePath("/api/metrics");
 
     return (
         <Link href={`/blog/${postID[0].id}`} className="post">

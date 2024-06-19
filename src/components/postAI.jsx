@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import { counterAI, durationAI } from '../app/metrics';
-import { revalidatePath } from 'next/cache';
+// import { revalidatePath } from 'next/cache';
 
 export default async function PostAI({ searchParams }) {
     const start = performance.now();
@@ -14,7 +14,7 @@ export default async function PostAI({ searchParams }) {
     counterAI.inc();
     durationAI.set(duracion);
 
-    revalidatePath("/api/metrics");
+    // revalidatePath("/api/metrics");
 
     return (
         <Link href={`/blog/vertexAI?country=${searchParams}`} className="post">
