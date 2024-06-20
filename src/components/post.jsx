@@ -19,8 +19,8 @@ export default async function Post({ searchParams }) {
     const postContent = await post.json();
     const duracion = performance.now() - start;
 
-    await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/increment` : "http://localhost:3000/api/increment"}?duration=${duracion}&action=fetch`
+    fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/metrics` : "http://localhost:3000/api/metrics"}?duration=${duracion}&action=fetch`
     );
 
     return (
