@@ -7,6 +7,8 @@ export async function GET(req) {
     const duracion = parseFloat(searchParams.get('duration'));
     const action = searchParams.get('action');
 
+    console.log("Request received. Duration:", duracion, "Action:", action);
+
     if (action === 'fetch') {
         counter.inc();
         duration.set(duracion);
@@ -19,6 +21,7 @@ export async function GET(req) {
         status: 200,
         headers: { 
             'Content-Type': register.contentType,
+            'Access-Control-Allow-Origin': '*'
             // 'Cache-Control': 'no-store',
         },
     });
