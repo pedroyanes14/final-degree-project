@@ -3,13 +3,19 @@ import Link from 'next/link';
 export default async function Post({ searchParams }) {
     const start = performance.now();
     const response = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/search?search=${searchParams}`
-    );
+        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/search?search=${searchParams}`, {
+        next: {
+            revalidate: 3600
+        }
+    });
     const postID = await response.json();
 
     const post = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts/${postID[0].id}`
-    );
+        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts/${postID[0].id}`, {
+        next: {
+            revalidate: 3600
+        }
+    });
     const postContent = await post.json();
     const duracion = performance.now() - start;
 
