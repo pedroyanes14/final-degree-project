@@ -2,7 +2,7 @@ export default async function Page({ params }) {
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts/${params.postId}`, {
 			next: {
-				revalidate: 300
+				revalidate: 3600
 			}
 		});
 	const post = await response.json();
