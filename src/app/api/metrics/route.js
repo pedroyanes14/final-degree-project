@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
-import { register, counter, duration, counterAI, durationAI } from '../../metrics';
+import { client, counter, duration, counterAI, durationAI } from '../../metrics';
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url);
@@ -16,11 +16,11 @@ export async function GET(req) {
         counterAI.inc();
         durationAI.set(duracion);
     }
-    const metrics = await register.metrics();
+    const metrics = await client.register.metrics();
     const response = new NextResponse(metrics, {
         status: 200,
         headers: { 
-            'Content-Type': register.contentType,
+            'Content-Type': client.register.contentType,
             'Access-Control-Allow-Origin': '*'
             // 'Cache-Control': 'no-store',
         },
