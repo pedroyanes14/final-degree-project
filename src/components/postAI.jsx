@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
-import { counterAI, durationAI } from '../app/metrics';
+import { client, counterAI, durationAI } from '../app/metrics';
 
 export default async function PostAI({ searchParams }) {
     const start = performance.now();
@@ -16,6 +16,8 @@ export default async function PostAI({ searchParams }) {
 
     counterAI.inc();
     durationAI.set(duracion);
+
+    console.log(client.register.metrics());
 
     return (
         <Link href={`/blog/vertexAI?country=${searchParams}`} className="post">
