@@ -17,7 +17,7 @@ export default async function PostAI({ searchParams }) {
     counterAI.inc();
     durationAI.set(duracion);
 
-    console.log(client.register.metrics());
+    console.log(await client.register.metrics());
 
     return (
         <Link href={`/blog/vertexAI?country=${searchParams}`} className="post">
