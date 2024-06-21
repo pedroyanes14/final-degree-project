@@ -4,5 +4,5 @@ module.exports = {
   experimental: {
     missingSuspenseWithCSRBailout: false,
   },
-  output: 'standalone'
+  // output: 'standalone'
 };
