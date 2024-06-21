@@ -4,7 +4,7 @@ import { counter, duration } from '../app/metrics';
 export default async function Post({ searchParams }) {
     const start = performance.now();
     const response = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/search?search=${searchParams}`, {
+        `https://planyourtravel.000webhostapp.com/wp-json/wp/v2/search?search=${searchParams}`, {
         next: {
             revalidate: 3600
         }
@@ -12,7 +12,7 @@ export default async function Post({ searchParams }) {
     const postID = await response.json();
 
     const post = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts/${postID[0].id}`, {
+        `https://planyourtravel.000webhostapp.com/wp-json/wp/v2/posts/${postID[0].id}`, {
         next: {
             revalidate: 3600
         }

@@ -1,6 +1,6 @@
 export default async function Page({ params }) {
 	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts/${params.postId}`, {
+		`https://planyourtravel.000webhostapp.com/wp-json/wp/v2/posts/${params.postId}`, {
 			next: {
 				revalidate: 3600
 			}
