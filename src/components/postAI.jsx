@@ -10,7 +10,7 @@ export default async function PostAI({ searchParams }) {
         {
             method: "POST",
             headers: {
-            Authorization: "Bearer ya29.a0AXooCgtDRoL8QGLa1q7ptuCCTY0wvnFREi0zDmrKyh7OD0QwtrhUevk8hxRyBSrJcbJ1tvR6Cu6dJTU0DshOJmQdjGmrZi9V_hjK1_xFR7JyLIYE1Dy815_7nTnmoZCRIWMDzLLMJOUssuPex2Cb1CGoox3eeJjLs3X38gFTtAaCgYKAbwSARMSFQHGX2Miup7XY35e7B2DxPSUlCmw9w0177",
+            Authorization: "Bearer ya29.a0AXooCgv1tJa9XCBhDgao6HHTu8SzVhumm0p1jijNGyxQt8wfBgGSPnjq_AnjjKZ2bY9D6-f1i87G8wh0qO5RpYEhjm0JX9QsETAaQFvpp50FzGMAvjO2Y-ZYEuL51kBX__u8J0moelOtVKJZE2XX4mze80CZP6zKY73mayk_mZcaCgYKARASARMSFQHGX2MinzjxKnGiyyxuV8WNGRYszg0178",
             "Content-Type": "application/json",
             },
             body: JSON.stringify({
