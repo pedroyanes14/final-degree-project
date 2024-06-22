@@ -23,6 +23,7 @@ export default async function PostAI({ searchParams }) {
             })
         }
     );
+    const duracion = performance.now() - start;
 
     if (vertextResponse.status !== 200) {
         const auth = await new GoogleAuth({
@@ -32,6 +33,8 @@ export default async function PostAI({ searchParams }) {
         const client = await auth.getClient();
         accessToken = (await client.getAccessToken()).token;
 
+        const start = performance.now();
+        
         const vertextResponse = await fetch(
             `https://us-central1-aiplatform.googleapis.com/v1/projects/final-degree-project-421721/locations/us-central1/publishers/google/models/text-bison:predict`,
             {
@@ -49,21 +52,8 @@ export default async function PostAI({ searchParams }) {
             }
         );
 
-        const data = await vertextResponse.json();
         const duracion = performance.now() - start;
-
-        counterAI.inc();
-        durationAI.set(duracion);
-        
-        return (
-            <Link href={`/blog/vertexAI?country=${searchParams}`} className="post">
-                <h3>Respuesta de Vertex AI</h3>
-                <ReactMarkdown>{data.predictions[0].content}</ReactMarkdown>
-            </Link>
-        )
-    } else {
         const data = await vertextResponse.json();
-        const duracion = performance.now() - start;
 
         counterAI.inc();
         durationAI.set(duracion);
@@ -75,4 +65,16 @@ export default async function PostAI({ searchParams }) {
             </Link>
         )
     }
+
+    const data = await vertextResponse.json();
+
+    counterAI.inc();
+    durationAI.set(duracion);
+    
+    return (
+        <Link href={`/blog/vertexAI?country=${searchParams}`} className="post">
+            <h3>Respuesta de Vertex AI</h3>
+            <ReactMarkdown>{data.predictions[0].content}</ReactMarkdown>
+        </Link>
+    )
 }
