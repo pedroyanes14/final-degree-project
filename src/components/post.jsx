@@ -1,7 +1,13 @@
 import Link from 'next/link';
 import { counter, duration } from '../app/metrics';
 
+const cache = {};
+
 export default async function Post({ searchParams }) {
+    if (!cache[searchParams]) {
+        counter.inc();
+    }
+
     const start = performance.now();
     const response = await fetch(
         `https://planyourtravel.000webhostapp.com/wp-json/wp/v2/search?search=${searchParams}`, {
@@ -20,11 +26,7 @@ export default async function Post({ searchParams }) {
     const postContent = await post.json();
     const duracion = performance.now() - start;
 
-    /* await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/metrics` : "http://localhost:3000/api/metrics"}?duration=${duracion}&action=fetch&${new Date().getTime()}`
-    ); */
-
-    counter.inc();
+    cache[searchParams] = postContent;
     duration.set(duracion);
 
     return (
