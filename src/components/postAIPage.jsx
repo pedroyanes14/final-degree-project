@@ -2,7 +2,7 @@ import ReactMarkdown from 'react-markdown';
 const { GoogleAuth } = require('google-auth-library');
 
 export default async function PostAIPage ({ searchParams }) {
-    let accessToken = "ya29.a0AXooCgv85laDFXjBL0OYEmVC1OEOUj4VyNzxwF5O_Iv_HTAi8bydINLqhC2DvljW7J6AmAWZhpyXeBO8CgrTZ57wPyDViXAdANiIl7McHkE-GdQp5zUP924H32jzUHFtbgQeD0zr6b40OV0CkAI2wplP5uQROLHjNS3itYUazIcaCgYKAZwSARMSFQHGX2MiOXLstGZnAKe7D67JAz99Dg0178";
+    let accessToken = "";
 
 	const vertextResponse = await fetch(
         `https://us-central1-aiplatform.googleapis.com/v1/projects/final-degree-project-421721/locations/us-central1/publishers/google/models/text-bison:predict`,

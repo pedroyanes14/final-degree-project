@@ -6,7 +6,7 @@ const { GoogleAuth } = require('google-auth-library');
 const cache = {};
 
 export default async function PostAI({ searchParams }) {
-    let accessToken = "ya29.a0AXooCgv85laDFXjBL0OYEmVC1OEOUj4VyNzxwF5O_Iv_HTAi8bydINLqhC2DvljW7J6AmAWZhpyXeBO8CgrTZ57wPyDViXAdANiIl7McHkE-GdQp5zUP924H32jzUHFtbgQeD0zr6b40OV0CkAI2wplP5uQROLHjNS3itYUazIcaCgYKAZwSARMSFQHGX2MiOXLstGZnAKe7D67JAz99Dg0178";
+    let accessToken = "";
 
     if (!cache[searchParams]) {
         counterAI.inc();
